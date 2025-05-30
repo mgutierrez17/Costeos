@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Usuarios;
+use App\Livewire\Admin\Empleados;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,7 +20,7 @@ Route::middleware([
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/admin/usuarios', \App\Livewire\Admin\Usuarios::class)->name('admin.usuarios');
-    Route::get('/admin/empleados', \App\Livewire\Admin\Empleados::class)->name('admin.empleados');
+    Route::get('/usuarios', Usuarios::class)->name('usuarios');
+    Route::get('/admin/empleados', Empleados::class)->name('admin.empleados');
 });
 
