@@ -1,5 +1,12 @@
 <div class="container p-4">
 
+    <div class="bg-red-500 text-white p-4 rounded">
+        Tailwind está funcionando 🎉
+    </div>
+<div class="bg-blue-500 text-white p-3 rounded-lg shadow">
+    ¡Hola Tailwind!
+</div>
+
     <!-- Botón para mostrar/ocultar el formulario -->
     <button wire:click="$toggle('mostrarFormulario')" class="btn btn-primary mb-3">
         {{ $mostrarFormulario ? 'Ocultar' : 'Crear Usuario' }}
