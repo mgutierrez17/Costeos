@@ -20,19 +20,24 @@ class Usuarios extends Component
 
     use WithPagination;
     public $search = '';
+    public $filtro = ''; // Se usará al presionar el botón Buscar
     protected $paginationTheme = 'tailwind'; // Para estilos de Tailwind
+
 
     public function render()
     {
-        $usuarios = User::where('name', 'like', '%' . $this->search . '%')
-            ->orWhere('email', 'like', '%' . $this->search . '%')
+        $usuarios = User::where(function ($query) {
+            $query->where('name', 'like', '%' . $this->search . '%')
+                ->orWhere('email', 'like', '%' . $this->search . '%');
+        })
             ->with('roles')
             ->orderBy('name')
-            ->paginate(5); // puedes ajustar el número
+            ->paginate(5);
 
         return view('livewire.usuarios', compact('usuarios'))
             ->layout('layouts.app');
     }
+
 
     public function crearUsuario()
     {
@@ -127,5 +132,26 @@ class Usuarios extends Component
     public function resetFormulario()
     {
         $this->reset(['name', 'email', 'password', 'mostrarFormulario', 'modo', 'usuarioSeleccionado']);
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage(); // vuelve a la página 1 cuando cambia el texto
+    }
+
+    public function aplicarFiltro()
+    {
+        $this->filtro = $this->search;
+        $this->resetPage();
+    }
+
+    public function limpiarFiltro()
+    {
+        $this->search = '';
+        $this->filtro = '';
+        $this->resetPage();
+
+        // Disparar evento para limpiar visualmente el input
+        $this->dispatch('limpiar-input-busqueda');
     }
 }

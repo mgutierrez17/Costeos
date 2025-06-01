@@ -20,7 +20,7 @@ Route::middleware([
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/usuarios', Usuarios::class)->name('usuarios');
+    Route::get('/usuarios', \App\Livewire\Usuarios::class)->name('usuarios');
+    //    Route::get('/usuarios', Usuarios::class)->name('usuarios');
     Route::get('/admin/empleados', Empleados::class)->name('admin.empleados');
 });
-
