@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 
 class Usuarios extends Component
 {
-    public $usuarios, $mostrarFormulario = false;
+    public $mostrarFormulario = false;
     public $name, $email, $password;
 
     public $modo = 'crear'; // 'crear', 'ver', 'editar'
@@ -30,7 +30,8 @@ class Usuarios extends Component
             ->orderBy('name')
             ->paginate(5); // puedes ajustar el número
 
-        return view('livewire.usuarios', compact('usuarios'));
+        return view('livewire.usuarios', compact('usuarios'))
+            ->layout('layouts.app');
     }
 
     public function crearUsuario()
