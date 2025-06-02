@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Usuarios;
 use App\Livewire\Admin\Empleados;
-
+use App\Livewire\Admin\Paginas;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,3 +25,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleados', \App\Livewire\Empleados::class)->name('empleados');
 
 });
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/admin/paginas', Paginas::class)->name('admin.paginas');
+});
+
