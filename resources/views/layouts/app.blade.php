@@ -21,7 +21,10 @@
     <x-banner />
 
     <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
+        <!--Menu original de Jetstream livewire ('navigation-menu') -->
+
+        <!-- Nuevo menu dinamico con roles -->
+        @livewire('componentes.menu')
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -37,13 +40,10 @@
             {{ $slot }}
         </main>
     </div>
-
     @stack('modals')
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     @livewireScripts
-
 
 </body>
 

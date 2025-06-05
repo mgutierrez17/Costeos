@@ -30,3 +30,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/paginas', Paginas::class)->name('admin.paginas');
 });
 
+Livewire::component('componentes.menu-dinamico', \App\Livewire\Componentes\Menu::class);
+

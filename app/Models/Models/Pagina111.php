@@ -11,10 +11,11 @@ class Pagina extends Model
     use HasFactory;
     protected $fillable = ['nombre', 'ruta', 'icono', 'visible'];
 
-    public function roles(): BelongsToMany
+    public function roles()
     {
-        return $this->belongsToMany(Role::class, 'pagina_role');
+        return $this->belongsToMany(Role::class);
     }
+
 
     public function paginas()
     {
